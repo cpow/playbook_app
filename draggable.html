@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Test Image Dragging Page</title>
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<style>
+	#draggable { width: 150px; height: 150px; padding: 0.5em; }
+	</style>
+	<script>
+	$(function() {
+		$( "#draggable" ).draggable();
+		$( ".dragimg" ).draggable({
+			refreshPositions : true,
+			stop: function(event, ui) {console.log(ui); alert(ui.helper.attr("id"));  alert(ui.position.left);}
+			//alert ("Draggable");
+		});
+
+	});
+
+	function testfunc() {
+		//alert("Clicked me!");
+		var arraysOfIds = $('#demo').find('img').map(function(){
+                       return this.id;
+                   }).get();
+		//$('$demo img').each(function(index) {
+		//var testVar = $('#demo').find('img');
+		var testVar = $('#demo').find('draggable');
+		var imgList = $('#demo img');
+		console.log(arraysOfIds);
+		//console.log(imgList);
+		//alert(arraysOfIds);
+		console.log($('#demo img').get());
+		for (var i=0; i < arraysOfIds.length; i++) {
+			alert("Image ID is " + arraysOfIds[i]);
+		}
+		//alert($('#demo img').get(0));
+		//alert ("Array of IDs" + arraysOfIds);
+	}
+	</script>
+
+
+
+<div id="demo" class="demo">
+
+<div id="draggable" class="ui-widget-content">
+	<p>Drag me around</p>
+</div>
+<img id="dragimg" src="slide1-11.png" class="dragimg"/>
+<img id="dragimg2" src="slide1-11.png" class="dragimg"/>
+
+
+</div><!-- End demo -->
+<form>
+<input type="button" value="Click me!" onclick="testfunc()" />
+</form>
+
+
+<div class="demo-description" style="display: none; ">
+<p>Enable draggable functionality on any DOM element. Move the draggable object by clicking on it with the mouse and dragging it anywhere within the viewport.</p>
+</div><!-- End demo-description -->
+</html>
